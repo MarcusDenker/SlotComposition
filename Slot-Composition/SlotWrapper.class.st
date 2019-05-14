@@ -11,6 +11,12 @@ Class {
 }
 
 { #category : #accessing }
+SlotWrapper >> composition: aComposedSlot [
+	super composition: aComposedSlot.
+	aComposedSlot addWrapper: self.
+]
+
+{ #category : #accessing }
 SlotWrapper >> implementor: aSlot [
 	implementor := aSlot
 ]

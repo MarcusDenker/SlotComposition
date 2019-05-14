@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 WeakSlotTest2 >> testReadWeakSlotCompiled [
 	| object slot |
-	slot := #slot1 => WeakSlotComposable.
+	slot := #slot1 => WeakSlot2.
 	aClass := self make: [ :builder | builder slots: {slot} ].
 	self assert: (aClass hasSlotNamed: #slot1).
 	
@@ -21,7 +21,7 @@ WeakSlotTest2 >> testReadWeakSlotCompiled [
 { #category : #tests }
 WeakSlotTest2 >> testReadWriteWeakSlotReflective [
 	| slot object |
-	slot := #slot1 => WeakSlotComposable.
+	slot := #slot1 => WeakSlot2.
 	aClass := self make: [ :builder | builder slots: {slot} ].
 	self assert: (aClass hasSlotNamed: #slot1).
 	object := aClass new.
@@ -33,7 +33,7 @@ WeakSlotTest2 >> testReadWriteWeakSlotReflective [
 { #category : #tests }
 WeakSlotTest2 >> testWeakSlotIsWeak [
 	| slot object |
-	slot := #slot1 => WeakSlotComposable.
+	slot := #slot1 => WeakSlot2.
 	aClass := self make: [ :builder | builder slots: {slot} ].
 	self assert: (aClass hasSlotNamed: #slot1).
 	object := aClass new.
@@ -47,7 +47,7 @@ WeakSlotTest2 >> testWeakSlotIsWeak [
 { #category : #tests }
 WeakSlotTest2 >> testWriteWeakSlotCompiled [
 	| slot object |
-	slot := #slot1 => WeakSlotComposable.
+	slot := #slot1 => WeakSlot2.
 	aClass := self make: [ :builder | builder slots: {slot} ].
 	self assert: (aClass hasSlotNamed: #slot1).
 	

@@ -2,31 +2,31 @@
 Composable version of WeakSlot. When the implementation is complete enough, we will replace WeakSlot with this implementation
 "
 Class {
-	#name : #WeakSlotComposable,
+	#name : #WeakSlot2,
 	#superclass : #SlotWrapper,
 	#category : #'Slot-Composition'
 }
 
 { #category : #'meta-object-protocol' }
-WeakSlotComposable >> initialize: anObject [
+WeakSlot2 >> initialize: anObject [
 
 	implementor write: (WeakArray new: 1) to: anObject
 ]
 
 { #category : #'meta-object-protocol' }
-WeakSlotComposable >> read: anObject [
+WeakSlot2 >> read: anObject [
 
 	^ (implementor read: anObject) at: 1
 ]
 
 { #category : #'meta-object-protocol' }
-WeakSlotComposable >> wantsInitalization [
+WeakSlot2 >> wantsInitalization [
 
 	^ true
 ]
 
 { #category : #'meta-object-protocol' }
-WeakSlotComposable >> write: aValue to: anObject [
+WeakSlot2 >> write: aValue to: anObject [
 
 	^(implementor read: anObject) at: 1 put: aValue
 ]

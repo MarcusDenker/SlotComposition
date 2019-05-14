@@ -14,3 +14,8 @@ Class {
 ComposableSlot class >> named: aName [
 	^(InstanceVariableSlot named: aName) + self
 ]
+
+{ #category : #accessing }
+ComposableSlot >> composition: aComposedSlot [
+	composition := aComposedSlot
+]

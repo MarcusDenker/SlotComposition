@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 ComposedSlotTest >> testComposedSlotAutoCompose [
 	| slot |
-	slot := #slot1 => WeakSlotComposable.
+	slot := #slot1 => WeakSlot2.
 	
 	self assert: slot class equals: ComposedSlot. 
 	"we share the name with the storage slot"
@@ -21,7 +21,7 @@ ComposedSlotTest >> testComposedSlotAutoCompose [
 { #category : #tests }
 ComposedSlotTest >> testComposedSlotSimpleCompose [
 	| slot |
-	slot := #slot1 => InstanceVariableSlot + WeakSlotComposable.
+	slot := #slot1 => InstanceVariableSlot + WeakSlot2.
 	
 	self assert: slot class equals: ComposedSlot. 
 	"we share the name with the storage slot"
@@ -29,7 +29,7 @@ ComposedSlotTest >> testComposedSlotSimpleCompose [
 	"as our storage slot is a normal ivar, we are not virtual"
 	self deny: slot isVirtual.
 	
-	slot := #slot1 => PropertySlot + WeakSlotComposable.
+	slot := #slot1 => PropertySlot + WeakSlot2.
 	
 	self assert: slot class equals: ComposedSlot. 
 	"we share the name with the storage slot"
