@@ -76,6 +76,21 @@ ComposedSlot >> isVirtual [
 	^base isVirtual
 ]
 
+{ #category : #printing }
+ComposedSlot >> printOn: aStream [
+	base needsFullDefinition
+		ifFalse: [ 
+			aStream
+				store: self name;
+				nextPutAll: ' => ' ]
+		ifTrue: [
+			base printOn: aStream.
+			aStream nextPutAll: ' + ' ].
+	wrappers
+		do: [ :each | each printOn: aStream ]
+		separatedBy: [ aStream nextPutAll: ' + ' ]
+]
+
 { #category : #'meta-object-protocol' }
 ComposedSlot >> read: anObject [
 	| value | 

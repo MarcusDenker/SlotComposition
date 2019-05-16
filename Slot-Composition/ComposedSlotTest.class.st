@@ -19,6 +19,16 @@ ComposedSlotTest >> testComposedSlotAutoCompose [
 ]
 
 { #category : #tests }
+ComposedSlotTest >> testComposedSlotPrint [
+	| slot |
+	slot := #slot1 => WeakSlot2.
+	self assert: slot printString equals: '#slot1 => WeakSlot2'.
+	
+	slot := #slot1 => PropertySlot + WeakSlot2.
+	self assert: slot printString equals: '#slot1 => PropertySlot + WeakSlot2'
+]
+
+{ #category : #tests }
 ComposedSlotTest >> testComposedSlotSimpleCompose [
 	| slot |
 	slot := #slot1 => InstanceVariableSlot + WeakSlot2.
@@ -36,5 +46,6 @@ ComposedSlotTest >> testComposedSlotSimpleCompose [
 	self assert: slot name equals: #slot1.
 	"as our storage slot is a Property, we are virtual"
 	self assert: slot isVirtual.
+	self assert: (slot instVarNamed: 'base') class equals: PropertySlot.
 
 ]
