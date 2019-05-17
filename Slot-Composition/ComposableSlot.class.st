@@ -19,3 +19,8 @@ ComposableSlot class >> named: aName [
 ComposableSlot >> composition: aComposedSlot [
 	composition := aComposedSlot
 ]
+
+{ #category : #accessing }
+ComposableSlot >> name [
+	^composition name
+]

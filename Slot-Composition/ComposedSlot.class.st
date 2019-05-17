@@ -52,7 +52,7 @@ ComposedSlot >> base: aSlot [
 
 { #category : #accessing }
 ComposedSlot >> index [
-	base index
+	^base index
 ]
 
 { #category : #accessing }
@@ -69,6 +69,11 @@ ComposedSlot >> initialize [
 { #category : #'meta-object-protocol' }
 ComposedSlot >> initialize: anObject [
 	wrappers do: [ :slotWrapper | slotWrapper initialize: anObject ]
+]
+
+{ #category : #'meta-object-protocol' }
+ComposedSlot >> installingIn: aClass [
+	decorators do: [ :each | each installingIn: aClass ]
 ]
 
 { #category : #'meta-object-protocol' }
