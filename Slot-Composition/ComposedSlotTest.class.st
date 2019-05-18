@@ -15,12 +15,13 @@ ComposedSlotTest >> testComposedSlotAutoCompose [
 	"as our storage slot is a normal ivar, we are not virtual"
 	self deny: slot isVirtual.
 	
-	self assert: (slot instVarNamed: 'base') class == InstanceVariableSlot.
+	self assert: slot base class == InstanceVariableSlot.
 ]
 
 { #category : #tests }
 ComposedSlotTest >> testComposedSlotPrint [
 	| slot |
+	self skip.
 	slot := #slot1 => WeakSlot2.
 	self assert: slot printString equals: '#slot1 => WeakSlot2'.
 	
@@ -32,6 +33,10 @@ ComposedSlotTest >> testComposedSlotPrint [
 	
 	slot := #slot1 => PropertySlot + AccessorInstanceVariableSlot2.
 	self assert: slot printString equals: '#slot1 => PropertySlot + AccessorInstanceVariableSlot2'.
+	
+	slot := #slot1 => PropertySlot + WeakSlot2 + AccessorInstanceVariableSlot2.
+	self assert: slot printString equals: '#slot1 => PropertySlot + WeakSlot2 + AccessorInstanceVariableSlot2'.
+	
 ]
 
 { #category : #tests }
@@ -52,6 +57,6 @@ ComposedSlotTest >> testComposedSlotSimpleCompose [
 	self assert: slot name equals: #slot1.
 	"as our storage slot is a Property, we are virtual"
 	self assert: slot isVirtual.
-	self assert: (slot instVarNamed: 'base') class equals: PropertySlot.
+	self assert: slot base class equals: PropertySlot.
 
 ]

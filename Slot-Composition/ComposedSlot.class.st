@@ -16,7 +16,6 @@ Class {
 	#name : #ComposedSlot,
 	#superclass : #Slot,
 	#instVars : [
-		'base',
 		'wrappers',
 		'decorators'
 	],
@@ -25,7 +24,10 @@ Class {
 
 { #category : #arithmetic }
 ComposedSlot >> + aComposableSlot [
-	"here we add a slot"
+		
+	^self
+		addComposableSlot: aComposableSlot new;
+		name: name.
 
 ]
 
@@ -45,19 +47,19 @@ ComposedSlot >> addWrapper: aSlot [
 	wrappers add: aSlot
 ]
 
-{ #category : #arithmetic }
-ComposedSlot >> base: aSlot [
-	base := aSlot
+{ #category : #accessing }
+ComposedSlot >> base [
+	^wrappers first
 ]
 
 { #category : #accessing }
 ComposedSlot >> index [
-	^base index
+	^self base index
 ]
 
 { #category : #accessing }
 ComposedSlot >> index: anIndex [
-	base index: anIndex
+	self base index: anIndex
 ]
 
 { #category : #'meta-object-protocol' }
@@ -79,25 +81,29 @@ ComposedSlot >> installingIn: aClass [
 
 { #category : #'meta-object-protocol' }
 ComposedSlot >> isVirtual [
-	^base isVirtual
+	^self base isVirtual
 ]
 
 { #category : #printing }
 ComposedSlot >> printOn: aStream [
-	base needsFullDefinition
+	self base needsFullDefinition
 		ifFalse: [ 
 			aStream
 				store: self name;
 				nextPutAll: ' => ' ]
 		ifTrue: [
-			base printOn: aStream.
+			self base printOn: aStream.
 			aStream nextPutAll: ' + ' ].
+	
 	wrappers allButFirst 
 		do: [ :each | each printOn: aStream ]
 		separatedBy: [ aStream nextPutAll: ' + ' ].
-		
+	
+	decorators ifEmpty: [ ^self ].
+	self base needsFullDefinition ifFalse: [aStream nextPutAll: ' + '].
 	decorators 
-		do: [ :each | each printOn: aStream ]
+		do: [ :each | 
+			each printOn: aStream ]
 		separatedBy: [ aStream nextPutAll: ' + ' ]
 		
 ]

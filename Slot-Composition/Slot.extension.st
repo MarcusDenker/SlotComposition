@@ -9,7 +9,6 @@ Slot >> + anotherSlot [
 		
 		
 	^ComposedSlot new 
-		base: self;
 		addWrapper: self; "base slot is the first wrapper, too"
 		addComposableSlot: composableSlot;
 		name: name.
