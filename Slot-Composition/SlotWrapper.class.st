@@ -26,11 +26,6 @@ SlotWrapper >> initialize: anObject [
 	"do nothing by default"
 ]
 
-{ #category : #printing }
-SlotWrapper >> printOn: aStream [
-	aStream nextPutAll: self class name
-]
-
 { #category : #'meta-object-protocol' }
 SlotWrapper >> read: anObject [
 	^implementor read: anObject

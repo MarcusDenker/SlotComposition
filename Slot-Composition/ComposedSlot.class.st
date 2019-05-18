@@ -73,6 +73,7 @@ ComposedSlot >> initialize: anObject [
 
 { #category : #'meta-object-protocol' }
 ComposedSlot >> installingIn: aClass [
+	super installingIn: aClass.
 	decorators do: [ :each | each installingIn: aClass ]
 ]
 
@@ -91,9 +92,14 @@ ComposedSlot >> printOn: aStream [
 		ifTrue: [
 			base printOn: aStream.
 			aStream nextPutAll: ' + ' ].
-	wrappers
+	wrappers allButFirst 
+		do: [ :each | each printOn: aStream ]
+		separatedBy: [ aStream nextPutAll: ' + ' ].
+		
+	decorators 
 		do: [ :each | each printOn: aStream ]
 		separatedBy: [ aStream nextPutAll: ' + ' ]
+		
 ]
 
 { #category : #'meta-object-protocol' }

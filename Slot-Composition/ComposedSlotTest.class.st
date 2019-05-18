@@ -25,7 +25,13 @@ ComposedSlotTest >> testComposedSlotPrint [
 	self assert: slot printString equals: '#slot1 => WeakSlot2'.
 	
 	slot := #slot1 => PropertySlot + WeakSlot2.
-	self assert: slot printString equals: '#slot1 => PropertySlot + WeakSlot2'
+	self assert: slot printString equals: '#slot1 => PropertySlot + WeakSlot2'.
+	
+	slot := #slot1 => AccessorInstanceVariableSlot2.
+	self assert: slot printString equals: '#slot1 => AccessorInstanceVariableSlot2'.
+	
+	slot := #slot1 => PropertySlot + AccessorInstanceVariableSlot2.
+	self assert: slot printString equals: '#slot1 => PropertySlot + AccessorInstanceVariableSlot2'.
 ]
 
 { #category : #tests }

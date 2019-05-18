@@ -24,3 +24,8 @@ ComposableSlot >> composition: aComposedSlot [
 ComposableSlot >> name [
 	^composition name
 ]
+
+{ #category : #printing }
+ComposableSlot >> printOn: aStream [
+	aStream nextPutAll: self class name
+]

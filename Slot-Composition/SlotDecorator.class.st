@@ -33,3 +33,7 @@ SlotDecorator >> composition: aComposedSlot [
 	super composition: aComposedSlot.
 	aComposedSlot addDecorator: self.
 ]
+
+{ #category : #accessing }
+SlotDecorator >> implementor: ignored [
+]
