@@ -4,9 +4,6 @@ A slot wrapper is used for wrapping slots in objects. Examples are WeakSlot, His
 Class {
 	#name : #SlotWrapper,
 	#superclass : #ComposableSlot,
-	#instVars : [
-		'implementor'
-	],
 	#category : #'Slot-Composition'
 }
 
@@ -17,8 +14,8 @@ SlotWrapper >> composition: aComposedSlot [
 ]
 
 { #category : #accessing }
-SlotWrapper >> implementor: aSlot [
-	implementor := aSlot
+SlotWrapper >> implementor [
+	^composition wrappers before: self
 ]
 
 { #category : #'meta-object-protocol' }
@@ -28,10 +25,10 @@ SlotWrapper >> initialize: anObject [
 
 { #category : #'meta-object-protocol' }
 SlotWrapper >> read: anObject [
-	^implementor read: anObject
+	^self implementor read: anObject
 ]
 
 { #category : #'meta-object-protocol' }
 SlotWrapper >> write: aValue to: anObject [
-	^implementor write: aValue to: anObject
+	^self implementor write: aValue to: anObject
 ]

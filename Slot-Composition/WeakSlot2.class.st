@@ -10,13 +10,13 @@ Class {
 { #category : #'meta-object-protocol' }
 WeakSlot2 >> initialize: anObject [
 
-	implementor write: (WeakArray new: 1) to: anObject
+	self implementor write: (WeakArray new: 1) to: anObject
 ]
 
 { #category : #'meta-object-protocol' }
 WeakSlot2 >> read: anObject [
 
-	^ (implementor read: anObject) at: 1
+	^ (self implementor read: anObject) at: 1
 ]
 
 { #category : #'meta-object-protocol' }
@@ -28,5 +28,5 @@ WeakSlot2 >> wantsInitalization [
 { #category : #'meta-object-protocol' }
 WeakSlot2 >> write: aValue to: anObject [
 
-	^(implementor read: anObject) at: 1 put: aValue
+	^(self implementor read: anObject) at: 1 put: aValue
 ]
