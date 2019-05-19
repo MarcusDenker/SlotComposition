@@ -1,16 +1,5 @@
 "
-The idea is to keep this at first quite simple:
-
--> There is an explicit composition Slot
--> it has ivars for the base slot, decorators and wrappers
-
-Later this might be structured more efficiently, e.g. 
-	-> have just one list and filter it 
-	-> base is head
-	-> do not use collection but Wrappers/Decorators could form linked list
-	
-
-
+A composed slot composes a base slot with one or multiple Slot Decorators or Slot Wrappers
 "
 Class {
 	#name : #ComposedSlot,
