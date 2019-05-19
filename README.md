@@ -12,7 +12,7 @@ Typical examples are e.g.
 - AccessorInstanceVariableSlot: shows how a slot can react to class creation by creating accessors.
 
 But what if one wants to have a slot that does all of this together? The current model forces the developer to implement a 
-WeakPropertyAccessorSlot class, duplicating all code. The resulting combinatory explosion makes this not practical
+WeakPropertyAccessorSlot class, duplicating all code. The resulting combinatory explosion makes it impractical for real use.
 
 The code you find here is an (ongoing) experiment to allow some form of Slot Composition. The model that is explores for now 
 take the idea that most kinds of user defines slots are in some form not really Slots but instead Decorators for existing Slots.
