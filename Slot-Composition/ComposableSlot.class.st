@@ -29,3 +29,8 @@ ComposableSlot >> name [
 ComposableSlot >> printOn: aStream [
 	aStream nextPutAll: self class name
 ]
+
+{ #category : #'meta-object-protocol' }
+ComposableSlot >> wantsInitalization [
+	^ false
+]

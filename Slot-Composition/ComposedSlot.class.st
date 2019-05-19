@@ -49,7 +49,12 @@ ComposedSlot >> addWrapper: aSlot [
 
 { #category : #accessing }
 ComposedSlot >> base [
-	^wrappers first
+	^self wrappers first
+]
+
+{ #category : #accessing }
+ComposedSlot >> decorators [
+	^decorators
 ]
 
 { #category : #accessing }
@@ -70,13 +75,13 @@ ComposedSlot >> initialize [
 
 { #category : #'meta-object-protocol' }
 ComposedSlot >> initialize: anObject [
-	wrappers do: [ :slotWrapper | slotWrapper initialize: anObject ]
+	self wrappers do: [ :slotWrapper | slotWrapper initialize: anObject ]
 ]
 
 { #category : #'meta-object-protocol' }
 ComposedSlot >> installingIn: aClass [
 	super installingIn: aClass.
-	decorators do: [ :each | each installingIn: aClass ]
+	self decorators do: [ :each | each installingIn: aClass ]
 ]
 
 { #category : #'meta-object-protocol' }
@@ -104,11 +109,11 @@ ComposedSlot >> printOn: aStream [
 { #category : #'meta-object-protocol' }
 ComposedSlot >> read: anObject [
 	| value | 
-	decorators do: [ :decorator | decorator beforeRead: anObject ].
+	self decorators do: [ :decorator | decorator beforeRead: anObject ].
 
-	value := wrappers last read: anObject.
+	value := self wrappers last read: anObject.
 
-	decorators do: [ :decorator  | decorator afterRead: anObject ].
+	self decorators do: [ :decorator  | decorator afterRead: anObject ].
 	
 	^value.
 ]
@@ -116,7 +121,12 @@ ComposedSlot >> read: anObject [
 { #category : #'meta-object-protocol' }
 ComposedSlot >> wantsInitalization [
 
-	^wrappers anySatisfy: [ :each | each wantsInitalization ]
+	^self wrappersAndDecorators anySatisfy: [ :each | each wantsInitalization ]
+]
+
+{ #category : #accessing }
+ComposedSlot >> wrappers [
+	^wrappers
 ]
 
 { #category : #accessing }
@@ -127,8 +137,8 @@ ComposedSlot >> wrappersAndDecorators [
 { #category : #'meta-object-protocol' }
 ComposedSlot >> write: aValue to: anObject [
 	| value | 
-	decorators do: [ :decorator | decorator beforeWrite: aValue to: anObject ].
-	value := wrappers last write: aValue to: anObject.
-	decorators do: [ :decorator  | decorator afterWrite: aValue to: anObject ].
+	self decorators do: [ :decorator | decorator beforeWrite: aValue to: anObject ].
+	value := self wrappers last write: aValue to: anObject.
+	self decorators do: [ :decorator  | decorator afterWrite: aValue to: anObject ].
 	^value.
 ]

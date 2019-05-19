@@ -32,11 +32,6 @@ SlotWrapper >> read: anObject [
 ]
 
 { #category : #'meta-object-protocol' }
-SlotWrapper >> wantsInitalization [
-	^ false
-]
-
-{ #category : #'meta-object-protocol' }
 SlotWrapper >> write: aValue to: anObject [
 	^implementor write: aValue to: anObject
 ]
