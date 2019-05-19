@@ -7,6 +7,8 @@ Class {
 { #category : #tests }
 ComposedSlotTest >> testComposedSlotAutoCompose [
 	| slot |
+	"if we use a decorator only, it auto-composes with an InstanceVariableSlot"
+	
 	slot := #slot1 => WeakSlot2.
 	
 	self assert: slot class equals: ComposedSlot. 
@@ -21,7 +23,6 @@ ComposedSlotTest >> testComposedSlotAutoCompose [
 { #category : #tests }
 ComposedSlotTest >> testComposedSlotPrint [
 	| slot |
-	self skip.
 	slot := #slot1 => WeakSlot2.
 	self assert: slot printString equals: '#slot1 => WeakSlot2'.
 	

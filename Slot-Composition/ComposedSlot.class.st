@@ -95,16 +95,9 @@ ComposedSlot >> printOn: aStream [
 			self base printOn: aStream.
 			aStream nextPutAll: ' + ' ].
 	
-	wrappers allButFirst 
+	self wrappersAndDecorators allButFirst 
 		do: [ :each | each printOn: aStream ]
 		separatedBy: [ aStream nextPutAll: ' + ' ].
-	
-	decorators ifEmpty: [ ^self ].
-	self base needsFullDefinition ifFalse: [aStream nextPutAll: ' + '].
-	decorators 
-		do: [ :each | 
-			each printOn: aStream ]
-		separatedBy: [ aStream nextPutAll: ' + ' ]
 		
 ]
 
@@ -124,6 +117,11 @@ ComposedSlot >> read: anObject [
 ComposedSlot >> wantsInitalization [
 
 	^wrappers anySatisfy: [ :each | each wantsInitalization ]
+]
+
+{ #category : #accessing }
+ComposedSlot >> wrappersAndDecorators [
+	^ wrappers, decorators
 ]
 
 { #category : #'meta-object-protocol' }
