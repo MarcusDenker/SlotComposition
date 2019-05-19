@@ -4,7 +4,7 @@ Extension { #name : #Slot }
 Slot >> + anotherSlot [
 		
 	^ComposedSlot new 
-		addWrapper: self; "base slot is the first wrapper, too"
+		addDecorator: self; "base slot is the first in the composition"
 		addComposableSlot: anotherSlot new;
 		name: name.
 ]

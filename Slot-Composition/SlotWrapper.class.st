@@ -10,7 +10,7 @@ Class {
 { #category : #accessing }
 SlotWrapper >> composition: aComposedSlot [
 	super composition: aComposedSlot.
-	aComposedSlot addWrapper: self.
+	aComposedSlot addDecorator: self
 ]
 
 { #category : #accessing }
@@ -21,6 +21,11 @@ SlotWrapper >> implementor [
 { #category : #'meta-object-protocol' }
 SlotWrapper >> initialize: anObject [
 	"do nothing by default"
+]
+
+{ #category : #testing }
+SlotWrapper >> isWrapper [
+	^true
 ]
 
 { #category : #'meta-object-protocol' }

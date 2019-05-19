@@ -20,6 +20,21 @@ ComposableSlot >> composition: aComposedSlot [
 	composition := aComposedSlot
 ]
 
+{ #category : #'meta-object-protocol' }
+ComposableSlot >> installingIn: aClass [
+	"do Nothing by default"
+]
+
+{ #category : #testing }
+ComposableSlot >> isDecorator [
+	^false
+]
+
+{ #category : #testing }
+ComposableSlot >> isWrapper [
+	^false
+]
+
 { #category : #accessing }
 ComposableSlot >> name [
 	^composition name

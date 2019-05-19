@@ -16,7 +16,6 @@ Class {
 	#name : #ComposedSlot,
 	#superclass : #Slot,
 	#instVars : [
-		'wrappers',
 		'decorators'
 	],
 	#category : #'Slot-Composition'
@@ -42,19 +41,14 @@ ComposedSlot >> addDecorator: aSlot [
 	decorators add: aSlot
 ]
 
-{ #category : #adding }
-ComposedSlot >> addWrapper: aSlot [
-	wrappers add: aSlot
-]
-
 { #category : #accessing }
 ComposedSlot >> base [
-	^self wrappers first
+	^decorators first
 ]
 
 { #category : #accessing }
 ComposedSlot >> decorators [
-	^decorators
+	^decorators allButFirst select: [ :each | each isDecorator ]
 ]
 
 { #category : #accessing }
@@ -69,19 +63,18 @@ ComposedSlot >> index: anIndex [
 
 { #category : #'meta-object-protocol' }
 ComposedSlot >> initialize [
-	wrappers := OrderedCollection new.
 	decorators := OrderedCollection new.
 ]
 
 { #category : #'meta-object-protocol' }
 ComposedSlot >> initialize: anObject [
-	self wrappers do: [ :slotWrapper | slotWrapper initialize: anObject ]
+	decorators do: [ :slotWrapper | slotWrapper initialize: anObject ]
 ]
 
 { #category : #'meta-object-protocol' }
 ComposedSlot >> installingIn: aClass [
 	super installingIn: aClass.
-	self decorators do: [ :each | each installingIn: aClass ]
+	decorators do: [ :each | each installingIn: aClass ]
 ]
 
 { #category : #'meta-object-protocol' }
@@ -100,7 +93,7 @@ ComposedSlot >> printOn: aStream [
 			self base printOn: aStream.
 			aStream nextPutAll: ' + ' ].
 	
-	self wrappersAndDecorators allButFirst 
+	decorators allButFirst 
 		do: [ :each | each printOn: aStream ]
 		separatedBy: [ aStream nextPutAll: ' + ' ].
 		
@@ -121,17 +114,15 @@ ComposedSlot >> read: anObject [
 { #category : #'meta-object-protocol' }
 ComposedSlot >> wantsInitalization [
 
-	^self wrappersAndDecorators anySatisfy: [ :each | each wantsInitalization ]
+	^decorators allButFirst anySatisfy: [ :each | each wantsInitalization ]
 ]
 
 { #category : #accessing }
 ComposedSlot >> wrappers [
-	^wrappers
-]
-
-{ #category : #accessing }
-ComposedSlot >> wrappersAndDecorators [
-	^ wrappers, decorators
+	| ret |
+	ret := decorators allButFirst select:  #isWrapper.
+	ret addFirst: decorators first. 
+	^ret
 ]
 
 { #category : #'meta-object-protocol' }

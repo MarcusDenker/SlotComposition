@@ -34,6 +34,7 @@ SlotDecorator >> composition: aComposedSlot [
 	aComposedSlot addDecorator: self.
 ]
 
-{ #category : #accessing }
-SlotDecorator >> implementor: ignored [
+{ #category : #testing }
+SlotDecorator >> isDecorator [
+	^true
 ]
