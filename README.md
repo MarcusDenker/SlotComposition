@@ -15,10 +15,12 @@ But what if one wants to have a slot that does all of this together? The current
 WeakPropertyAccessorSlot class, duplicating all code. The resulting combinatory explosion makes this not practical
 
 The code you find here is an (ongoing) experiment to allow some form of Slot Composition. The model that is explores for now 
-take the idea that most kinds of user defines slots are in some form not realluy Slots but instead Decorators for existing Slots.
+take the idea that most kinds of user defines slots are in some form not really Slots but instead Decorators for existing Slots.
 
 This means we allow one real Slot to be combined with multiple decorators / wrappers. For example:
 
 #slot1 => PropertySlot + WeakSlot2 + AccessorInstanceVariableSlot2
 
-NOT: this is ongoing exploratory work to find a model that is simple and yet can model all the current examples. It will change a lot.
+(the suffic 2 implies a implementation of a Slot class that exists in Pharo8, but as a composable decorator)
+
+NOTE: this is ongoing exploratory work to find a model that is simple and yet can model all the current examples. It will change a lot.
