@@ -8,3 +8,8 @@ Slot >> + anotherSlot [
 		addComposableSlot: anotherSlot new;
 		name: name.
 ]
+
+{ #category : #'*Slot-Composition' }
+Slot >> isWrapper [
+	^true
+]

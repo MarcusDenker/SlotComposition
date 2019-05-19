@@ -48,7 +48,8 @@ ComposedSlot >> base [
 
 { #category : #accessing }
 ComposedSlot >> decorators [
-	^decorators allButFirst select: [ :each | each isDecorator ]
+	"first is the base slot"
+	^decorators allButFirst select: #isDecorator
 ]
 
 { #category : #accessing }
@@ -119,10 +120,8 @@ ComposedSlot >> wantsInitalization [
 
 { #category : #accessing }
 ComposedSlot >> wrappers [
-	| ret |
-	ret := decorators allButFirst select:  #isWrapper.
-	ret addFirst: decorators first. 
-	^ret
+	^decorators select: #isWrapper.
+	
 ]
 
 { #category : #'meta-object-protocol' }

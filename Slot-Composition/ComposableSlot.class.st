@@ -17,6 +17,7 @@ ComposableSlot class >> named: aName [
 
 { #category : #accessing }
 ComposableSlot >> composition: aComposedSlot [
+	aComposedSlot addDecorator: self.
 	composition := aComposedSlot
 ]
 

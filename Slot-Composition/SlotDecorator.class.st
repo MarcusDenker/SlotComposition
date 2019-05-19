@@ -28,12 +28,6 @@ SlotDecorator >> beforeWrite: aValue to: anObject [
 	
 ]
 
-{ #category : #accessing }
-SlotDecorator >> composition: aComposedSlot [
-	super composition: aComposedSlot.
-	aComposedSlot addDecorator: self.
-]
-
 { #category : #testing }
 SlotDecorator >> isDecorator [
 	^true

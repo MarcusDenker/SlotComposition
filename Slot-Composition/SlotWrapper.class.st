@@ -8,12 +8,6 @@ Class {
 }
 
 { #category : #accessing }
-SlotWrapper >> composition: aComposedSlot [
-	super composition: aComposedSlot.
-	aComposedSlot addDecorator: self
-]
-
-{ #category : #accessing }
 SlotWrapper >> implementor [
 	^composition wrappers before: self
 ]
