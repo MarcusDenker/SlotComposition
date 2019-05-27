@@ -1,5 +1,9 @@
 "
-A slot wrapper is used for wrapping slots in objects. Examples are WeakSlot, HistorySlot...
+A slot wrapper is used for wrapping slots in objects. Examples are WeakSlot and ProcessLocalSlot.
+
+Wrappers are hard to compose, therefore:
+	- if possible, use another strategy!
+	- by default we allow one wrapper per composition
 "
 Class {
 	#name : #SlotWrapper,
@@ -7,14 +11,15 @@ Class {
 	#category : #'Slot-Composition'
 }
 
+{ #category : #'as yet unclassified' }
+SlotWrapper >> checkComposition [
+	"By default we allow just one Wrapper"
+	(composition wrappers size > 2) ifTrue: [self error: 'just one Wrapper allowed']
+]
+
 { #category : #accessing }
 SlotWrapper >> implementor [
 	^composition wrappers before: self
-]
-
-{ #category : #'meta-object-protocol' }
-SlotWrapper >> initialize: anObject [
-	"do nothing by default"
 ]
 
 { #category : #testing }

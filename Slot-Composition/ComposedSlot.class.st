@@ -21,8 +21,10 @@ ComposedSlot >> + aComposableSlot [
 
 { #category : #adding }
 ComposedSlot >> addComposableSlot: aSlot [
-	"need to add to wrappers or decorators"
+	"check for compatibility: there can be only one base slot. For Wrappers, it is the job 
+	of the wrapper to check compatibility."
 	aSlot composition: self.
+	aSlot checkComposition.
 ]
 
 { #category : #adding }

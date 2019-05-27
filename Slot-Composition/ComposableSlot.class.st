@@ -15,10 +15,20 @@ ComposableSlot class >> named: aName [
 	^(InstanceVariableSlot named: aName) + self
 ]
 
+{ #category : #'as yet unclassified' }
+ComposableSlot >> checkComposition [
+	"everythung goes"
+]
+
 { #category : #accessing }
 ComposableSlot >> composition: aComposedSlot [
 	aComposedSlot addDecorator: self.
 	composition := aComposedSlot
+]
+
+{ #category : #'meta-object-protocol' }
+ComposableSlot >> initialize: anObject [
+	"do nothing by default"
 ]
 
 { #category : #'meta-object-protocol' }

@@ -2,7 +2,7 @@
 A slot decorator can decorate a slot with three things:
 	1) meta data by storing it as its state
 	2) it can act on #installingIn:
-	3) it can provice before and after code for read and write
+	3) it can provide before and after code for read and write
 "
 Class {
 	#name : #SlotDecorator,
