@@ -46,6 +46,7 @@ HistorySlot2 >> installingIn: aClass [
 
 { #category : #'meta-object-protocol' }
 HistorySlot2 >> readHistory: anObject [
+	<exposeToComposition>
 	^baseSlot read: anObject
 ]
 

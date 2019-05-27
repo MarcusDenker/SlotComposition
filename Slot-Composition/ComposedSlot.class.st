@@ -43,6 +43,15 @@ ComposedSlot >> decorators [
 	^decorators allButFirst select: #isDecorator
 ]
 
+{ #category : #'reflective operations' }
+ComposedSlot >> doesNotUnderstand: aMessage [
+	"if decorator expose methods we allow them to be called via the composition.  We just take the first found"
+	| decoratorsToCall  |
+	decoratorsToCall := decorators select: [ :decorator | decorator class methods anySatisfy: [ :method |
+			(method selector == aMessage selector) and: [ method hasPragmaNamed: #exposeToComposition ]	] ] .
+	^aMessage sendTo: decoratorsToCall first
+]
+
 { #category : #accessing }
 ComposedSlot >> index [
 	^self base index
