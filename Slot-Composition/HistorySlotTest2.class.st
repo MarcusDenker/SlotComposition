@@ -48,7 +48,6 @@ HistorySlotTest2 >> testAddTwoElements [
 
 { #category : #tests }
 HistorySlotTest2 >> testAddTwoElementsHistoryRead [
-	
 	| slot instance |
 	slot := #slot1 => HistorySlot2.
 	aClass := self make: [ :builder | builder slots: {slot} ].
@@ -65,8 +64,43 @@ HistorySlotTest2 >> testAddTwoElementsHistoryRead [
 { #category : #tests }
 HistorySlotTest2 >> testHistoryGreaterThanThree [
 	| slot instance |
-	self flag: #TODO.
-	slot := #slot1 => HistorySlot size: 3.
+	slot := #slot1 => (HistorySlot2 size: 3).
+	aClass := self make: [ :builder | builder slots: {slot} ].
+
+	self compileAccessorsFor: slot.
+
+	instance := aClass new.
+	instance slot1: 25.
+	instance slot1: 35.
+	instance slot1: 35.
+	instance slot1: 35.
+	instance slot1: 35.
+	instance slot1: 35.
+	self assert: (slot readHistory: instance) size equals: 3
+]
+
+{ #category : #tests }
+HistorySlotTest2 >> testHistoryGreaterThanThree2 [
+	| slot instance |
+	slot := #slot1 => HistorySlot2 size: 3.
+	aClass := self make: [ :builder | builder slots: {slot} ].
+
+	self compileAccessorsFor: slot.
+
+	instance := aClass new.
+	instance slot1: 25.
+	instance slot1: 35.
+	instance slot1: 35.
+	instance slot1: 35.
+	instance slot1: 35.
+	instance slot1: 35.
+	self assert: (slot readHistory: instance) size equals: 3
+]
+
+{ #category : #tests }
+HistorySlotTest2 >> testHistoryGreaterThanThree3 [
+	| slot instance |
+	slot := #slot1 => InstanceVariableSlot + HistorySlot2 + WeakSlot2 size: 3.
 	aClass := self make: [ :builder | builder slots: {slot} ].
 
 	self compileAccessorsFor: slot.

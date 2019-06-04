@@ -51,6 +51,11 @@ ComposableSlot >> name [
 	^composition name
 ]
 
+{ #category : #'instance creation' }
+ComposableSlot >> named: aName [
+	^(InstanceVariableSlot named: aName) + self
+]
+
 { #category : #printing }
 ComposableSlot >> printOn: aStream [
 	aStream nextPutAll: self class name

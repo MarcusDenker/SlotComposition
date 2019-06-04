@@ -49,7 +49,8 @@ ComposedSlot >> doesNotUnderstand: aMessage [
 	| decoratorsToCall  |
 	decoratorsToCall := decorators select: [ :decorator | decorator class methods anySatisfy: [ :method |
 			(method selector == aMessage selector) and: [ method hasPragmaNamed: #exposeToComposition ]	] ] .
-	^aMessage sendTo: decoratorsToCall first
+	decoratorsToCall ifNotEmpty: [^aMessage sendTo: decoratorsToCall first].
+	^super doesNotUnderstand: aMessage
 ]
 
 { #category : #accessing }

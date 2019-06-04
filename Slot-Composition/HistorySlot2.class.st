@@ -19,7 +19,11 @@ HistorySlot2 class >> size: anInteger [
 
 { #category : #'meta-object-protocol' }
 HistorySlot2 >> afterWrite: aValue to: anObject [
-	(self readHistory: anObject) addLast: aValue
+	| collection |
+	collection := self readHistory: anObject.
+	collection addLast: aValue.
+	(collection size > size) ifTrue: [  
+		collection removeFirst]
 ]
 
 { #category : #initialization }
@@ -52,5 +56,8 @@ HistorySlot2 >> readHistory: anObject [
 
 { #category : #accessing }
 HistorySlot2 >> size: anObject [
-	size := anObject
+	"initalizers need to retunr the composition"
+	<exposeToComposition>
+	size := anObject.
+	^composition
 ]
