@@ -14,7 +14,11 @@ Class {
 
 { #category : #accessing }
 HistorySlot2 class >> size: anInteger [
-	^self new size: anInteger
+	| instance |
+	instance := self new.
+	"size: return the compisition, this this method is a bit odd"
+	instance size: anInteger.
+	^instance
 ]
 
 { #category : #'meta-object-protocol' }

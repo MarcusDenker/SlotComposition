@@ -15,9 +15,9 @@ ComposableSlot class >> named: aName [
 	^(InstanceVariableSlot named: aName) + self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #composition }
 ComposableSlot >> checkComposition [
-	"everythung goes"
+	"everything goes"
 ]
 
 { #category : #accessing }

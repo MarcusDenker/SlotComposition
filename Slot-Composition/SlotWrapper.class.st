@@ -11,7 +11,7 @@ Class {
 	#category : #'Slot-Composition'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #composition }
 SlotWrapper >> checkComposition [
 	"By default we allow just one Wrapper"
 	(composition wrappers size > 2) ifTrue: [self error: 'just one Wrapper allowed']
