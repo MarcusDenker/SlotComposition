@@ -86,18 +86,18 @@ HistorySlotTest2 >> testModifyIvarToHistory [
 	"test if we can transform a standard ivar to a history slot when instances are present"
 
 	| slot instance |
-	self skip. self flag: #FIMXE.
 	slot := #slot1 =>InstanceVariableSlot .
 	aClass := self make: [ :builder | builder slots: {slot} ].
 
 	self compileAccessorsFor: slot.
 
 	instance := aClass new.
-	instance slot1: 25.
 	instance slot1: 35.
 	slot := #slot1 =>HistorySlot2.
 	aClass := self make: [ :builder | builder slots: {slot} ].
 	
-	self assert: instance slot1 equals: 25.
-	self assert: (slot readHistory: instance) asArray equals: #(25)
+	self assert: instance slot1 equals: 35.
+	self assert: (slot readHistory: instance) asArray equals: #(35).
+	instance slot1: 25.	
+	self assert: (slot readHistory: instance) asArray equals: #(35 25).
 ]
