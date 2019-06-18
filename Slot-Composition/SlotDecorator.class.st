@@ -28,6 +28,11 @@ SlotDecorator >> beforeWrite: aValue to: anObject [
 	
 ]
 
+{ #category : #accessing }
+SlotDecorator >> implementor [
+	^composition wrappers last
+]
+
 { #category : #testing }
 SlotDecorator >> isDecorator [
 	^true
